@@ -1,0 +1,42 @@
+{
+  "name": "ts-asserts",
+  "version": "1.0.0",
+  "description": "Assertion Library for TypeScript",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^24.9.0",
+    "husky": "^4.0.10",
+    "jest": "^24.9.0",
+    "lint-staged": "^10.0.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pirosikick/ts-asserts.git"
+  },
+  "keywords": [],
+  "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pirosikick/ts-asserts/issues"
+  },
+  "homepage": "https://github.com/pirosikick/ts-asserts#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
