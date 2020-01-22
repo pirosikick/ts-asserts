@@ -1,3 +1,4 @@
+// This file tests type chechking
 import * as asserts from "./";
 
 export const unknownToNumber1 = (value: unknown): number => {
