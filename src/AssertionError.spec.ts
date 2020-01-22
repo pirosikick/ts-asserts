@@ -17,6 +17,7 @@ describe("AssetionError", () => {
 
 describe("createMessage", () => {
   test.each([
+    // [testcase title, message, args, expected]
     ["message only", "hello", [], "hello"],
     ["message & args", "hello, %s", ["world"], "hello, world"],
     [

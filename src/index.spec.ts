@@ -6,13 +6,17 @@ beforeEach(() => {
 
 test("assert", () => {
   expect(() => asserts.assert(true)).not.toThrow();
-  expect(() => asserts.assert(false)).toThrow(asserts.AssertionError);
+  expect(() => asserts.assert(false)).toThrow(new asserts.AssertionError(""));
 });
 
 test("assertArray", () => {
   expect(() => asserts.assertArray([])).not.toThrow();
   expect(() => asserts.assertArray("not array")).toThrow(
-    asserts.AssertionError
+    new asserts.AssertionError(
+      "Expected array but got %s: %s",
+      "string",
+      "not array"
+    )
   );
 });
 
@@ -20,13 +24,23 @@ test("assertBoolean", () => {
   expect(() => asserts.assertBoolean(true)).not.toThrow();
   expect(() => asserts.assertBoolean(false)).not.toThrow();
   expect(() => asserts.assertBoolean("not boolean")).toThrow(
-    asserts.AssertionError
+    new asserts.AssertionError(
+      "Expected boolean but got %s: %s",
+      "string",
+      "not boolean"
+    )
   );
 });
 
 test("assertString", () => {
   expect(() => asserts.assertString("")).not.toThrow();
-  expect(() => asserts.assertString(true)).toThrow(asserts.AssertionError);
+  expect(() => asserts.assertString(true)).toThrow(
+    new asserts.AssertionError(
+      "Expected string but got %s: %s",
+      "boolean",
+      "true"
+    )
+  );
 });
 
 test("assertNumber", () => {
@@ -34,13 +48,25 @@ test("assertNumber", () => {
   expect(() => asserts.assertNumber(NaN)).not.toThrow();
   expect(() => asserts.assertNumber(Infinity)).not.toThrow();
   expect(() => asserts.assertNumber(-Infinity)).not.toThrow();
-  expect(() => asserts.assertNumber(true)).toThrow(asserts.AssertionError);
+  expect(() => asserts.assertNumber(true)).toThrow(
+    new asserts.AssertionError(
+      "Expected number but got %s: %s",
+      "boolean",
+      "true"
+    )
+  );
 });
 
 test("assertFinite", () => {
   expect(() => asserts.assertFinite(0)).not.toThrow();
   expect(() => asserts.assertFinite(NaN)).toThrow(asserts.AssertionError);
-  expect(() => asserts.assertFinite(Infinity)).toThrow(asserts.AssertionError);
+  expect(() => asserts.assertFinite(Infinity)).toThrow(
+    new asserts.AssertionError(
+      "Expected finite number but got %s: %s",
+      "number",
+      "Infinity"
+    )
+  );
   expect(() => asserts.assertFinite(-Infinity)).toThrow(asserts.AssertionError);
   expect(() => asserts.assertFinite(true)).toThrow(asserts.AssertionError);
 });
@@ -48,12 +74,20 @@ test("assertFinite", () => {
 test("assertFunction", () => {
   expect(() => asserts.assertFunction(() => {})).not.toThrow();
   expect(() => asserts.assertFunction(function() {})).not.toThrow();
-  expect(() => asserts.assertFunction(true)).toThrow(asserts.AssertionError);
+  expect(() => asserts.assertFunction(true)).toThrow(
+    new asserts.AssertionError(
+      "Expected function but got %s: %s",
+      "boolean",
+      "true"
+    )
+  );
 });
 
 test("assertExists", () => {
   expect(() => asserts.assertExists(true)).not.toThrow();
-  expect(() => asserts.assertExists(undefined)).toThrow(asserts.AssertionError);
+  expect(() => asserts.assertExists(undefined)).toThrow(
+    new asserts.AssertionError("Expected to exist: %s", "undefined")
+  );
   expect(() => asserts.assertExists(null)).toThrow(asserts.AssertionError);
 });
 
@@ -66,13 +100,19 @@ test("assertInstanceOf", () => {
   expect(() => asserts.assertInstanceOf(c, Child)).not.toThrow();
   expect(() => asserts.assertInstanceOf(c, Parent)).not.toThrow();
   expect(() => asserts.assertInstanceOf(p, Child)).toThrow(
-    asserts.AssertionError
+    new asserts.AssertionError(
+      "Expected instance of %s but got %s",
+      "Child",
+      "Parent"
+    )
   );
 });
 
 test("assertObject", () => {
   expect(() => asserts.assertObject({})).not.toThrow();
-  expect(() => asserts.assertObject(null)).toThrow(asserts.AssertionError);
+  expect(() => asserts.assertObject(null)).toThrow(
+    new asserts.AssertionError("Expected object but got %s: %s", "null", "null")
+  );
   expect(() => asserts.assertObject(true)).toThrow(asserts.AssertionError);
 });
 
@@ -122,4 +162,37 @@ describe("disable", () => {
       expect(() => asserts.assertObject(true)).not.toThrow();
     });
   });
+});
+
+describe("custom error message", () => {
+  expect(() => asserts.assert(false, "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
+  expect(() => asserts.assertArray(false, "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
+  expect(() => asserts.assertBoolean("", "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
+  expect(() => asserts.assertString(false, "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
+  expect(() => asserts.assertNumber(false, "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
+  expect(() => asserts.assertFinite(false, "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
+  expect(() => asserts.assertFunction(false, "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
+  expect(() => asserts.assertExists(undefined, "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
+  expect(() =>
+    asserts.assertInstanceOf("", Object, "hello, %s", "world")
+  ).toThrow("hello, world");
+  expect(() => asserts.assertObject(null, "hello, %s", "world")).toThrow(
+    "hello, world"
+  );
 });

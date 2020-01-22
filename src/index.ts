@@ -11,66 +11,172 @@ export const disable = () => {
   enabled = false;
 };
 
-export function assert(condition: any): asserts condition {
+export function assert(
+  condition: any,
+  message?: string,
+  ...args: string[]
+): asserts condition {
   if (enabled && !condition) {
-    throw new AssertionError("");
+    throwAssertionError("", [], message, args);
   }
 }
 
-export function assertArray(value: unknown): asserts value is Array<unknown> {
+export function assertArray(
+  value: unknown,
+  message?: string,
+  ...args: string[]
+): asserts value is Array<unknown> {
   if (enabled && !Array.isArray(value)) {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected array but got %s: %s",
+      [typeOf(value), String(value)],
+      message,
+      args
+    );
   }
 }
 
-export function assertBoolean(value: unknown): asserts value is boolean {
+export function assertBoolean(
+  value: unknown,
+  message?: string,
+  ...args: string[]
+): asserts value is boolean {
   if (enabled && typeof value !== "boolean") {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected boolean but got %s: %s",
+      [typeOf(value), String(value)],
+      message,
+      args
+    );
   }
 }
 
-export function assertString(value: unknown): asserts value is string {
+export function assertString(
+  value: unknown,
+  message?: string,
+  ...args: string[]
+): asserts value is string {
   if (enabled && typeof value !== "string") {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected string but got %s: %s",
+      [typeOf(value), String(value)],
+      message,
+      args
+    );
   }
 }
 
-export function assertNumber(value: unknown): asserts value is number {
+export function assertNumber(
+  value: unknown,
+  message?: string,
+  ...args: string[]
+): asserts value is number {
   if (enabled && typeof value !== "number") {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected number but got %s: %s",
+      [typeOf(value), String(value)],
+      message,
+      args
+    );
   }
 }
 
-export function assertFinite(value: unknown): asserts value is number {
+export function assertFinite(
+  value: unknown,
+  message?: string,
+  ...args: string[]
+): asserts value is number {
   if (enabled && !(typeof value === "number" && isFinite(value))) {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected finite number but got %s: %s",
+      [typeOf(value), String(value)],
+      message,
+      args
+    );
   }
 }
 
-export function assertFunction(value: unknown): asserts value is Function {
+export function assertFunction(
+  value: unknown,
+  message?: string,
+  ...args: string[]
+): asserts value is Function {
   if (enabled && typeof value !== "function") {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected function but got %s: %s",
+      [typeOf(value), String(value)],
+      message,
+      args
+    );
   }
 }
 
-export function assertExists<T>(value: T): asserts value is NonNullable<T> {
+export function assertExists<T>(
+  value: T,
+  message?: string,
+  ...args: string[]
+): asserts value is NonNullable<T> {
   if (enabled && (typeof value === "undefined" || value === null)) {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected to exist: %s",
+      [String(value)],
+      message,
+      args
+    );
   }
 }
 
 export function assertInstanceOf<
   T extends { new (...args: any[]): InstanceType<T> }
->(value: unknown, type: T): asserts value is InstanceType<T> {
+>(
+  value: unknown,
+  type: T,
+  message?: string,
+  ...args: string[]
+): asserts value is InstanceType<T> {
   if (enabled && !(value instanceof type)) {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected instance of %s but got %s",
+      [typeOf(type), typeOf(value)],
+      message,
+      args
+    );
   }
 }
 
 export function assertObject(
-  value: unknown
+  value: unknown,
+  message?: string,
+  ...args: string[]
 ): asserts value is { [key: string]: unknown } {
   if (enabled && !(typeof value === "object" && value !== null)) {
-    throw new AssertionError("");
+    throwAssertionError(
+      "Expected object but got %s: %s",
+      [typeOf(value), String(value)],
+      message,
+      args
+    );
   }
 }
+
+const typeOf = (value: unknown) => {
+  if (value instanceof Function) {
+    return value.name || "unknown type";
+  } else if (value instanceof Object) {
+    return value.constructor.name || String(value);
+  }
+  return value === null ? "null" : typeof value;
+};
+
+const throwAssertionError = (
+  defaultMessage: string,
+  defaultArgs: string[],
+  message?: string,
+  args?: string[]
+) => {
+  if (message) {
+    throw new AssertionError(message, ...(args || []));
+  } else {
+    throw new AssertionError(defaultMessage, ...defaultArgs);
+  }
+};
