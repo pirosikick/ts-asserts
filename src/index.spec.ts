@@ -116,6 +116,10 @@ test("assertObject", () => {
   expect(() => asserts.assertObject(true)).toThrow(asserts.AssertionError);
 });
 
+test("fail", () => {
+  expect(() => asserts.fail()).toThrow(new asserts.AssertionError("Failure"));
+});
+
 describe("disable", () => {
   beforeEach(() => {
     asserts.disable();
@@ -161,6 +165,10 @@ describe("disable", () => {
     test("assetObject", () => {
       expect(() => asserts.assertObject(true)).not.toThrow();
     });
+
+    test("fail", () => {
+      expect(() => asserts.fail()).not.toThrow();
+    });
   });
 });
 
@@ -194,5 +202,8 @@ describe("custom error message", () => {
   ).toThrow("hello, world");
   expect(() => asserts.assertObject(null, "hello, %s", "world")).toThrow(
     "hello, world"
+  );
+  expect(() => asserts.fail("hello, %s", "world")).toThrow(
+    "Failure: hello, world"
   );
 });

@@ -159,6 +159,12 @@ export function assertObject(
   }
 }
 
+export function fail(message?: string, ...args: string[]) {
+  if (enabled) {
+    throwAssertionError("Failure", [], message && `Failure: ${message}`, args);
+  }
+}
+
 const typeOf = (value: unknown) => {
   if (value instanceof Function) {
     return value.name || "unknown type";
