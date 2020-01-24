@@ -18,7 +18,8 @@
   "scripts": {
     "test": "run-s test:*",
     "test:tsc": "tsc -b tsconfig.test.json",
-    "test:jest": "jest",
+    "test:jest": "jest --coverage",
+    "dev": "jest --watch",
     "build": "tsc"
   },
   "repository": {
