@@ -1,18 +1,26 @@
 {
-  "name": "ts-asserts",
+  "name": "@pirosikick/ts-asserts",
   "version": "0.0.0",
-  "description": "Assertion Library for TypeScript",
+  "description": "Assertion Library with TS 3.7 Assertion Funnction",
   "main": "lib/index.js",
+  "files": [
+    "lib",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@types/jest": "^24.9.0",
+    "del-cli": "^3.0.0",
     "husky": "^4.0.10",
     "jest": "^24.9.0",
     "lint-staged": "^10.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
+    "standard-version": "^7.1.0",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -20,7 +28,10 @@
     "test:tsc": "tsc -b tsconfig.test.json",
     "test:jest": "jest --coverage",
     "dev": "jest --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "clean": "del lib coverage",
+    "release": "run-s clean test build && standard-version",
+    "release:dry-run": "run-s clean test build && standard-version --dry-run"
   },
   "repository": {
     "type": "git",
