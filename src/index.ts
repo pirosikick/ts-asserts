@@ -3,14 +3,27 @@ export { AssertionError };
 
 let enabled = true;
 
+/**
+ * Enables assertion
+ */
 export const enable = () => {
   enabled = true;
 };
 
+/**
+ * Disables assertion
+ */
 export const disable = () => {
   enabled = false;
 };
 
+/**
+ * Checks if `condition` is truthy.
+ *
+ * @param {any} condition - The condition to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assert(
   condition: any,
   message?: string,
@@ -21,6 +34,13 @@ export function assert(
   }
 }
 
+/**
+ * Checks if `value` is an array of something.
+ *
+ * @param {unknown} value - The value to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertArray(
   value: unknown,
   message?: string,
@@ -36,6 +56,13 @@ export function assertArray(
   }
 }
 
+/**
+ * Checks if `value` is a boolean.
+ *
+ * @param {unknown} value - The value to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertBoolean(
   value: unknown,
   message?: string,
@@ -51,6 +78,13 @@ export function assertBoolean(
   }
 }
 
+/**
+ * Checks if `value` is a string.
+ *
+ * @param {unknown} value - The value to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertString(
   value: unknown,
   message?: string,
@@ -66,6 +100,13 @@ export function assertString(
   }
 }
 
+/**
+ * Checks if `value` is a number.
+ *
+ * @param {unknown} value - The value to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertNumber(
   value: unknown,
   message?: string,
@@ -81,6 +122,13 @@ export function assertNumber(
   }
 }
 
+/**
+ * Checks if `value` is a finite number.
+ *
+ * @param {unknown} value - The value to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertFinite(
   value: unknown,
   message?: string,
@@ -96,6 +144,13 @@ export function assertFinite(
   }
 }
 
+/**
+ * Checks if `value` is a function.
+ *
+ * @param {unknown} value - The value to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertFunction(
   value: unknown,
   message?: string,
@@ -111,6 +166,13 @@ export function assertFunction(
   }
 }
 
+/**
+ * Checks if `value` isn't undefined or null.
+ *
+ * @param {unknown} value - The value to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertExists<T>(
   value: T,
   message?: string,
@@ -126,6 +188,14 @@ export function assertExists<T>(
   }
 }
 
+/**
+ * Checks if `value` is an instance of `type`.
+ *
+ * @param {unknown} value - The value to check
+ * @param {any} type - The class to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertInstanceOf<
   T extends { new (...args: any[]): InstanceType<T> }
 >(
@@ -144,6 +214,13 @@ export function assertInstanceOf<
   }
 }
 
+/**
+ * Checks if `value` is an object.
+ *
+ * @param {unknown} value - The value to check
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function assertObject(
   value: unknown,
   message?: string,
@@ -159,12 +236,25 @@ export function assertObject(
   }
 }
 
+/**
+ * Throws `AssertionError`.
+ *
+ * @param {string=} message - Error message
+ * @param {..string} args - Strings to replace "%s" in `message`
+ */
 export function fail(message?: string, ...args: string[]) {
   if (enabled) {
     throwAssertionError("Failure", [], message && `Failure: ${message}`, args);
   }
 }
 
+/**
+ * Gets `value`'s type as string
+ *
+ * @private
+ * @param {unknown} value
+ * @returns {string}
+ */
 const typeOf = (value: unknown) => {
   if (value instanceof Function) {
     return value.name || "unknown type";
@@ -174,6 +264,16 @@ const typeOf = (value: unknown) => {
   return value === null ? "null" : typeof value;
 };
 
+/**
+ * Throws `AssertionError` with `message` and `args`.
+ * If `message` isn't set, `defaultMessage` and `defaultArgs` is used.
+ *
+ * @private
+ * @param {string} defaultMessage
+ * @param {Array<string>} defaultArgs
+ * @param {string=} message
+ * @param {Array<string>=} args
+ */
 const throwAssertionError = (
   defaultMessage: string,
   defaultArgs: string[],
