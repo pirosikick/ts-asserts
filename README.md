@@ -1,5 +1,5 @@
 # @pirosikick/ts-asserts
-
+[![npm version](https://badge.fury.io/js/%40pirosikick%2Fts-asserts.svg)](https://badge.fury.io/js/%40pirosikick%2Fts-asserts)
 [![CI](https://github.com/pirosikick/ts-asserts/workflows/CI/badge.svg)](https://github.com/pirosikick/ts-asserts/actions)
 [![codecov](https://codecov.io/gh/pirosikick/ts-asserts/branch/master/graph/badge.svg)](https://codecov.io/gh/pirosikick/ts-asserts)
 
