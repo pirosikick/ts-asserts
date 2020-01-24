@@ -18,3 +18,4 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/coverage-final.json
+          yml: ./codecov.yml
