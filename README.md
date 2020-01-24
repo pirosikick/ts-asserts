@@ -5,7 +5,7 @@
 
 Assertion Library with [TS 3.7 Assertion Function](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions)
 
-## Motivate
+## Motivation
 
 - Wanted an alternative to [goog.asserts](https://google.github.io/closure-library/api/goog.asserts.html) in TypeScript
 
