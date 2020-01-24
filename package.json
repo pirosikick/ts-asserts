@@ -30,8 +30,9 @@
     "dev": "jest --watch",
     "build": "tsc",
     "clean": "del lib coverage",
-    "release": "run-s clean test build && standard-version",
-    "release:dry-run": "run-s clean test build && standard-version --dry-run"
+    "prerelease": "run-s clean test build",
+    "release": "standard-version",
+    "release:dry-run": "npm run release -- --dry-run"
   },
   "repository": {
     "type": "git",
