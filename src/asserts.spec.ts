@@ -1,4 +1,4 @@
-import * as asserts from "./";
+import * as asserts from "./asserts";
 
 beforeEach(() => {
   asserts.enable();

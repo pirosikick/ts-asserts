@@ -1,5 +1,5 @@
 // This file tests type chechking
-import * as asserts from "./";
+import * as asserts from "./asserts";
 
 export const unknownToNumber1 = (value: unknown): number => {
   asserts.assert(typeof value === "number");
