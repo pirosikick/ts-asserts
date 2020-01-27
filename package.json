@@ -1,6 +1,6 @@
 {
   "name": "@pirosikick/ts-asserts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Assertion Library with TS 3.7 Assertion Funnction",
   "main": "lib/node.js",
   "browser": "lib/browser.js",

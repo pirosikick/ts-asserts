@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/pirosikick/ts-asserts/compare/v0.0.1...v0.0.2) (2020-01-27)
+
+
+### Features
+
+* add DISABLE_TS_ASSERTS env ([7b1cdd2](https://github.com/pirosikick/ts-asserts/commit/7b1cdd2d575b8432db5c28800b597d29f5f30fbf))
+
 ### 0.0.1 (2020-01-24)
 
 ### Features
