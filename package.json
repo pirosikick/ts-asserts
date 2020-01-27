@@ -4,8 +4,11 @@
   "description": "Assertion Library with TS 3.7 Assertion Funnction",
   "main": "lib/node.js",
   "browser": "lib/browser.js",
+  "module": "esm/browser.js",
+  "types": "esm/asserts.d.ts",
   "files": [
     "lib",
+    "esm",
     "package.json",
     "README.md",
     "LICENSE"
@@ -26,11 +29,13 @@
   },
   "scripts": {
     "test": "run-s test:*",
-    "test:tsc": "tsc -b tsconfig.test.json",
+    "test:tsc": "tsc -p tsconfig.test.json",
     "test:jest": "jest --coverage",
     "dev": "jest --watch",
-    "build": "tsc",
-    "clean": "del lib coverage",
+    "build": "run-p build:*",
+    "build:node": "tsc",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "clean": "del lib esm coverage",
     "prerelease": "run-s clean test build",
     "release": "standard-version",
     "release:dry-run": "npm run release -- --dry-run"
