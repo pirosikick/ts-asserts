@@ -1,4 +1,5 @@
 # @pirosikick/ts-asserts
+
 [![npm version](https://badge.fury.io/js/%40pirosikick%2Fts-asserts.svg)](https://badge.fury.io/js/%40pirosikick%2Fts-asserts)
 [![CI](https://github.com/pirosikick/ts-asserts/workflows/CI/badge.svg)](https://github.com/pirosikick/ts-asserts/actions)
 [![codecov](https://codecov.io/gh/pirosikick/ts-asserts/branch/master/graph/badge.svg)](https://codecov.io/gh/pirosikick/ts-asserts)
@@ -51,15 +52,36 @@ Besides `assert`, `@pirosikick/ts-asserts` has several assertion functions:
 - `assetObject(value: unknown, message?: string, ...args: string[])`
 - `fail(message?: string, ...args: string[])`
 
-### Disable assertion
+### Disable the assertions
+
+To disable the assertions, you can use the `DISABLE_TS_ASSERTS` environment variable.
+
+The below command line is the example which disables the assertions of ts-asserts in Node.js:
+
+```console
+$ DISABLE_TS_ASSERT=1 node something.js
+```
+
+In webpack, [`DefinePlugin`](https://webpack.js.org/plugins/define-plugin/) is suitable:
+
+```js
+new webpack.DefinePlugin({
+  DISABLE_TS_ASSERTS: true
+});
+```
 
 If you want to disable/enable assertion programmatically, you can use `disable()` or `enable()`.
 
 ```ts
-import { disable } from "@pirosikick/ts-asserts";
+import { disable, enable } from "@pirosikick/ts-asserts";
 
 disable();
-/* Assertion functions never throw an error. */
+
+// ...Assertion functions never throw an error.
+
+enable();
+
+// ...Assertion functions throw an error.
 ```
 
 ## License
