@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/pirosikick/ts-asserts/compare/v0.0.2...v0.0.3) (2020-03-13)
+
+
+### Bug Fixes
+
+* **browser:** fix "DISABLE_TS_ASSERTS is not defined" ([2955bfb](https://github.com/pirosikick/ts-asserts/commit/2955bfb4f93c9d66697a7b3d234de8c4477046bf))
+
 ### [0.0.2](https://github.com/pirosikick/ts-asserts/compare/v0.0.1...v0.0.2) (2020-01-27)
 
 
