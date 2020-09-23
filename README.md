@@ -1,8 +1,8 @@
-# @pirosikick/ts-asserts
+# @cybozu/ts-asserts
 
-[![npm version](https://badge.fury.io/js/%40pirosikick%2Fts-asserts.svg)](https://badge.fury.io/js/%40pirosikick%2Fts-asserts)
-[![CI](https://github.com/pirosikick/ts-asserts/workflows/CI/badge.svg)](https://github.com/pirosikick/ts-asserts/actions)
-[![codecov](https://codecov.io/gh/pirosikick/ts-asserts/branch/master/graph/badge.svg)](https://codecov.io/gh/pirosikick/ts-asserts)
+[![npm version](https://badge.fury.io/js/%40cybozu%2Fts-asserts.svg)](https://badge.fury.io/js/%40cybozu%2Fts-asserts)
+[![CI](https://github.com/cybozu/ts-asserts/workflows/CI/badge.svg)](https://github.com/cybozu/ts-asserts/actions)
+[![codecov](https://codecov.io/gh/cybozu/ts-asserts/branch/master/graph/badge.svg)](https://codecov.io/gh/cybozu/ts-asserts)
 
 Assertion Library with [TS 3.7 Assertion Function](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions)
 
@@ -14,10 +14,10 @@ Assertion Library with [TS 3.7 Assertion Function](https://www.typescriptlang.or
 
 ```console
 # npm
-$ npm install @pirosikick/ts-asserts
+$ npm install @cybozu/ts-asserts
 
 # yarn
-$ yarn add @pirosikick/ts-asserts
+$ yarn add @cybozu/ts-asserts
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ $ yarn add @pirosikick/ts-asserts
 In bellow example, if `typeof value === number` is true, TypeScript assumes `value` is number type after `assert` is called. If not, `assert` throws `AssertionError`.
 
 ```ts
-import { assert } from "@pirosikick/ts-asserts";
+import { assert } from "@cybozu/ts-asserts";
 
 function unknownToNumber(value: unknown): number {
   assert(typeof value === "number");
@@ -40,7 +40,7 @@ assert(type value === 'number', "value isn't number");
 assert(type value === 'number', "value isn't %s: %s", "number", String(value));
 ```
 
-Besides `assert`, `@pirosikick/ts-asserts` has several assertion functions:
+Besides `assert`, `@cybozu/ts-asserts` has several assertion functions:
 
 - `assertArray(value: unknown, message?: string, ...args: string[])`
 - `assertBoolean(value: unknown, message?: string, ...args: string[])`
@@ -73,7 +73,7 @@ new webpack.DefinePlugin({
 If you want to disable/enable assertion programmatically, you can use `disable()` or `enable()`.
 
 ```ts
-import { disable, enable } from "@pirosikick/ts-asserts";
+import { disable, enable } from "@cybozu/ts-asserts";
 
 disable();
 

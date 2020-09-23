@@ -1,5 +1,5 @@
 {
-  "name": "@pirosikick/ts-asserts",
+  "name": "@cybozu/ts-asserts",
   "version": "0.0.4",
   "description": "Assertion Library with TS 3.7 Assertion Funnction",
   "main": "lib/node.js",
@@ -42,15 +42,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/pirosikick/ts-asserts.git"
+    "url": "git+ssh://git@github.com/cybozu/ts-asserts.git"
   },
   "keywords": [],
-  "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
+  "author": "Cybozu, Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pirosikick/ts-asserts/issues"
+    "url": "https://github.com/cybozu/ts-asserts/issues"
   },
-  "homepage": "https://github.com/pirosikick/ts-asserts#readme",
+  "homepage": "https://github.com/cybozu/ts-asserts#readme",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
