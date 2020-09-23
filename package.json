@@ -1,6 +1,6 @@
 {
   "name": "@cybozu/ts-asserts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Assertion Library with TS 3.7 Assertion Funnction",
   "main": "lib/node.js",
   "browser": "lib/browser.js",
