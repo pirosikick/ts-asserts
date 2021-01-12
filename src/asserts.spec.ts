@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import * as asserts from "./asserts";
 
 beforeEach(() => {

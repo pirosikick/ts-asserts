@@ -6,7 +6,7 @@ export const unknownToNumber1 = (value: unknown): number => {
   return value;
 };
 
-export const unknownToArray = (value: unknown): Array<unknown> => {
+export const unknownToArray = (value: unknown): unknown[] => {
   asserts.assertArray(value);
   return value;
 };
@@ -31,7 +31,9 @@ export const unknownToFinite = (value: unknown): number => {
   return value;
 };
 
-export const unknownToFunction = (value: unknown): Function => {
+export const unknownToFunction = (
+  value: unknown
+): ((...args: any[]) => any) => {
   asserts.assertFunction(value);
   return value;
 };

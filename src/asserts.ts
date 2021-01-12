@@ -45,7 +45,7 @@ export function assertArray(
   value: unknown,
   message?: string,
   ...args: string[]
-): asserts value is Array<unknown> {
+): asserts value is unknown[] {
   if (enabled && !Array.isArray(value)) {
     throwAssertionError(
       "Expected array but got %s: %s",
@@ -144,6 +144,7 @@ export function assertFinite(
   }
 }
 
+/* eslint-disable no-shadow */
 /**
  * Checks if `value` is a function.
  *
@@ -155,7 +156,7 @@ export function assertFunction(
   value: unknown,
   message?: string,
   ...args: string[]
-): asserts value is Function {
+): asserts value is (...args: any[]) => any {
   if (enabled && typeof value !== "function") {
     throwAssertionError(
       "Expected function but got %s: %s",
@@ -165,6 +166,7 @@ export function assertFunction(
     );
   }
 }
+/* eslint-enable no-shadow */
 
 /**
  * Checks if `value` isn't undefined or null.
@@ -188,6 +190,7 @@ export function assertExists<T>(
   }
 }
 
+/* eslint-disable no-shadow */
 /**
  * Checks if `value` is an instance of `type`.
  *
@@ -213,6 +216,7 @@ export function assertInstanceOf<
     );
   }
 }
+/* eslint-enable no-shadow */
 
 /**
  * Checks if `value` is an object.

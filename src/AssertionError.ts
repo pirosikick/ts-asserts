@@ -16,9 +16,8 @@ export const createMessage = (message: string, ...args: string[]) => {
     .reduce((output, chunk, i) => {
       if (i === 0) {
         return [chunk];
-      } else {
-        return [...output, args[i - 1] || "%s", chunk];
       }
+      return [...output, args[i - 1] || "%s", chunk];
     }, [] as string[])
     .join("");
 };
